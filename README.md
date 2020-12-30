@@ -1,2 +1,2 @@
 # python-spider-study
-python爬虫学校
+python爬虫学习
