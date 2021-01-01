@@ -11,12 +11,12 @@ class RequestSpider(object):
         self.url = url
         headers = {
             # 浏览器的版本
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                          "Chrome/87.0.4280.66 Safari/537.36 ",
-            "uid": "like",
-            "password": "1"
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+            # "uid": "like",
+            # "password": "1"
         }
-        self.resp = requests.post(url, headers=headers)
+        self.resp = requests.post(url, headers=headers, data={"uid": "like",
+                                                              "password": "1"})
 
     def run(self):
         data = self.resp.content.decode("utf-8")
