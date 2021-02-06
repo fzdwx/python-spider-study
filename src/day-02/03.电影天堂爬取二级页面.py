@@ -8,6 +8,7 @@ import re
 from urllib import request
 from randomAgent import *
 import time
+import pymysql
 
 
 class FilmSkyData(object):
@@ -15,7 +16,9 @@ class FilmSkyData(object):
     p2 = re.compile('<a href="(.*?)" target="_blank"><strong>')
 
     def __init__(self):
+        db = pymysql.connect(user='root', password='root', host='47.115.115.226', port=3306)
         self.url = 'https://www.dytt8.net/html/gndy/dyzz/list_23_{}.html'
+        print(db)
 
     # 获取页面数据
     def getPage(self, url):
@@ -55,4 +58,4 @@ class FilmSkyData(object):
 # f.start()
 if __name__ == '__main__':
     s = FilmSkyData()
-    s.start()
+    # s.start()
