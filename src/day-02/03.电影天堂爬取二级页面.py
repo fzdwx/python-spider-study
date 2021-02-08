@@ -3,11 +3,9 @@
 # @since 2021-02-05 10:42
 # @email 980650920@qq.com
 #
-import random
 import re
 from urllib import request
-from randomAgent import *
-import time
+from src.randomAgent import *
 import pymysql
 
 
