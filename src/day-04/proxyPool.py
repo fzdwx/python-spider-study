@@ -19,7 +19,7 @@ def getRawProxyList():
     p = re.compile('(((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}:\d{4})')
     i = random.randint(0, 500)
 
-    for page in range(i, i + 10):
+    for page in range(i, i + 3):
         reqUrl = url.format(page)
         html = requests.get(url=reqUrl, headers=h).text
 
