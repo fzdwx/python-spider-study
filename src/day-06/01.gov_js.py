@@ -3,6 +3,8 @@
 # @since 2021-02-13 9:32
 # @email 980650920@qq.com
 # 政府网站通过js跳转页面 反爬
+from asyncio import Lock
+
 import requests
 import pymysql
 import re
