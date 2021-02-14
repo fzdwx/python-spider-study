@@ -17,7 +17,7 @@ class Xiaomi:
         self.n = 0
 
     def urlEnQueue(self):
-        for i in range(60):
+        for i in range(10):
             trueUrl = self.url.format(i)
             self.queue.put(trueUrl)
 
@@ -30,8 +30,8 @@ class Xiaomi:
             html = json.loads(html)
             for app in html['data']:
                 appName = app['displayName']
-
-                # print(appName)
+                appLink = 'http://app.mi.com/details?id=' + app['packageName']
+                print(appName + ":" + appLink)
                 self.n = self.n + 1
 
     def start(self):
