@@ -5,7 +5,7 @@
 #
 from selenium import webdriver
 import time
-
+import scrapy
 
 class JdSpider(object):
     def __init__(self):
@@ -47,6 +47,8 @@ class JdSpider(object):
                 time.sleep(1)
             else:
                 break
+
+        self.chrome.quit()
 
 
 if __name__ == '__main__':
