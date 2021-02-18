@@ -22,7 +22,7 @@ class MaoyanSpider(scrapy.Spider):
                 # dont_filter=True  # 很关键
             )
 
-    def parse_html(self,response):
+    def parse_html(self, response):
         ddList = response.xpath('//dl[@class="board-wrapper"]/dd')
         item = MaoyanItem()
         for dd in ddList:
