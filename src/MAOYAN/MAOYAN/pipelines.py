@@ -18,15 +18,14 @@ class MaoyanPipeline:
 
 class MysqlPipeline(object):
     def __init__(self):
-        pass
-
-    def open_spider(self, spider):
         self.db = pymysql.connect(
             host=MYSQL_HOST,
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
             db=MYSQL_DB)
         self.cursor = self.db.cursor()
+
+    def open_spider(self, spider):
         pass
 
     def process_item(self, item, spider):
