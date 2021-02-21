@@ -13,19 +13,37 @@ class ZufangSpider(scrapy.Spider):
 
     # start_urls = ['http://wh.lianjia.com/']
 
-    mainUrl = 'https://wh.lianjia.com/zufang'
+    # 主路径
+    mainUrl = 'https://wh.lianjia.com{}'
+    # 保存各个地区的名称
+    areaNameList = []
+    # 保存各个地区名字以及对应的跳转url
+    areaInfoMap = {}
+    # 各个区域房源总数量
+    areaMapHouseCount = {}
 
     def start_requests(self):
         yield scrapy.Request(
-            url=self.mainUrl,
+            url=self.mainUrl.format('/' + self.name),
             callback=self.parse
         )
 
     def parse(self, response):
-        item = LianjiaItem()
-        areaInfoList = response.xpath('//ul/li[@data-type="district"]')
-        for areaInfo in areaInfoList:
-            item['areaUrl'] = areaInfo.xpath('./a/@href').extract()[0]
-            item['areaName'] = areaInfo.xpath('./a/text()').extract()[0]
+        #
+        areaInfoListXpath = response.xpath('//ul/li[@data-type="district"]')
+        for areaInfo in areaInfoListXpath:
+            areaName = areaInfo.xpath('./a/text()').extract()[0]
+            areaUrl = self.mainUrl.format(areaInfo.xpath('./a/@href').extract()[0])
 
-            yield item
+            self.areaInfoMap[areaName] = areaUrl
+            self.areaNameList.append(areaName)
+
+            yield scrapy.Request(
+                url=areaUrl,
+                callback=self.parseAreaHouseCount
+            )
+
+    def parseAreaHouseCount(self, response):
+        # //span[@class="content__title--hl"]/text()
+        count = response.xpath('//span[@class="content__title--hl"]/text()').extract()[0]
+        print(response.url, count)
