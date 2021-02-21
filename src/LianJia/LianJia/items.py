@@ -9,6 +9,5 @@ import scrapy
 class LianjiaItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    areaUrl = scrapy.Field()
     areaName = scrapy.Field()
-    pass
+    areaCount = scrapy.Field()

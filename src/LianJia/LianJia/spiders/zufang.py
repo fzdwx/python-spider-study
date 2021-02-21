@@ -29,7 +29,6 @@ class ZufangSpider(scrapy.Spider):
         )
 
     def parse(self, response):
-        #
         areaInfoListXpath = response.xpath('//ul/li[@data-type="district"]')
         for areaInfo in areaInfoListXpath:
             areaName = areaInfo.xpath('./a/text()').extract()[0]
@@ -44,6 +43,12 @@ class ZufangSpider(scrapy.Spider):
             )
 
     def parseAreaHouseCount(self, response):
+        item = LianjiaItem()
         # //span[@class="content__title--hl"]/text()
         count = response.xpath('//span[@class="content__title--hl"]/text()').extract()[0]
-        print(response.url, count)
+        areaName = self.areaInfoMap.get(response.url)
+        self.areaMapHouseCount[areaName] = count
+
+        # item['areaName'] = areaName
+        # item['areaCount'] = count
+        # yield item
