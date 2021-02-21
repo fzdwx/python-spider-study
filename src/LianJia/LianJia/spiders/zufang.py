@@ -35,7 +35,7 @@ class ZufangSpider(scrapy.Spider):
             areaName = areaInfo.xpath('./a/text()').extract()[0]
             areaUrl = self.mainUrl.format(areaInfo.xpath('./a/@href').extract()[0])
 
-            self.areaInfoMap[areaName] = areaUrl
+            self.areaInfoMap[areaUrl] = areaName
             self.areaNameList.append(areaName)
 
             yield scrapy.Request(
