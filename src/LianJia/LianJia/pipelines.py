@@ -10,4 +10,5 @@ from itemadapter import ItemAdapter
 
 class LianjiaPipeline:
     def process_item(self, item, spider):
+        print(item['areaUrl'], item['areaName'])
         return item
